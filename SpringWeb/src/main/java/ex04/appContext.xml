@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- MessageImpl 빈을 등록하세요 id="mb1" 
+		[1] setter injection ==> setter메서드를 이용해서 값(or 객체)을 주입한다
+		[2] constructor injection
+	-->
+	<bean id="mb1" class="ex04.MessageImpl">
+		<property name="name">
+			<value>최길동</value>
+		</property>
+		<!--mb1.setName("최길동"); 와 동일  -->
+		
+		<property name="greeting" value="좋은 하루 되세요~~"/>
+		<!-- mb1.setGreeting("좋은 하루 되세요~~"); -->		
+		
+		<property name="today">
+			<ref bean="now"/>
+		</property>
+		<!-- mb1.setToday(now)
+		 -->
+		 <property name="ran" ref="random"/>
+		 <!-- mb1.setRan(random) -->
+	</bean>
+	
+		
+	
+	<!-- mb2 id로 MessageImpl 빈을 하나 더 등록하세요
+		이름,인삿말 setter로 주입하세요
+	 -->
+	<bean id="mb2" class="ex04.MessageImpl">
+		<property name="greeting" value="화이팅!!"/>
+		<property name="name" value="이승리"/>
+		<property name="ran" ref="random"/>
+		<property name="today" ref="now"/>
+	</bean> 
+	
+	<!-- java.util.Date 빈을 생성하고 id를 주세요 -->
+	<bean id='now' class="java.util.Date" />
+
+	<!-- java.util.Random빈을 생성하고 id 주세요 -->
+	<bean id='random' class="java.util.Random" />
+</beans>

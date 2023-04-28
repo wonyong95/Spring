@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<!-- 생성자 인젝션 -->
+	<!-- [1] 기본생성자를 이용해 EmpImpl빈 생성 -->
+	<bean id="e1" class="ex05.EmpImpl"/>
+	
+	<!-- [2] String 1개짜리 생성자를 이용해 EmpImpl빈 생성
+			생성자를 통해 name값을 주입한다
+	 -->
+	 <bean id="e2" class="ex05.EmpImpl">
+	 	<constructor-arg index="0" type="java.lang.String"
+	 	 value="Scott"/>
+	 </bean>
+
+	<!-- [3] String 2개짜리 생성자(부서,이름) -->
+	<bean id="e3" class="ex05.EmpImpl">
+		<constructor-arg index="0" type="java.lang.String">
+			<value>Sales</value>
+		</constructor-arg>
+		<constructor-arg index="1" type="java.lang.String" value="King" />
+	</bean>
+	<!-- [4] String 2개, int 1개 짜리 생성자 (부서,이름,급여) -->
+	<bean id="e4" class="ex05.EmpImpl">
+		<constructor-arg index="0" type="java.lang.String" value="Research"/>
+		<constructor-arg index="1" type="java.lang.String" value="James"/>
+		<constructor-arg index="2" type="int" value="4500"/>
+	</bean>
+	<!-- [5] Random객체를 받는 생성자-->
+	<bean id="random" class="java.util.Random"/>
+	<bean id="e5" class="ex05.EmpImpl">
+		<constructor-arg index="0" type="java.util.Random" ref="random"/>
+	</bean>
+</beans>
