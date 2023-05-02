@@ -48,7 +48,7 @@
 					<b>글번호</b>
 				</td>
 				<td width="80%">
-					<input type="text" name="no" value="a"
+					<input type="text" name="no" value="${memo.no}"
 					 placeholder="No" readonly style="width:40%">
 				</td>				
 			</tr>
@@ -58,7 +58,7 @@
 					<b>작성자</b>
 				</td>
 				<td width="80%">
-					<input type="text" name="name" value="a"
+					<input type="text" name="name" value="${memo.name}"
 					 placeholder="Name">
 				</td>				
 			</tr>
@@ -68,7 +68,7 @@
 					<b>메모 내용</b>
 				</td>
 				<td width="80%">
-					<input type="text" name="msg"  value="a"
+					<input type="text" name="msg"  value="${memo.msg}"
 					 placeholder="Message">
 				</td>				
 			</tr>

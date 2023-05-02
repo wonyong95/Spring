@@ -10,6 +10,7 @@
 		<config>src/main/java/ex03/applicationContext.xml</config>
 		<config>src/main/java/ex04/appContext.xml</config>
 		<config>src/main/java/ex05/exployee.xml</config>
+		<config>src/main/resources/config/spring/datasource-context.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>

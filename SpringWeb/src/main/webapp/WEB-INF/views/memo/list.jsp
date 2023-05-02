@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +9,18 @@
 <link rel="stylesheet" type="text/css" href="css/memo.css">
 </head>
 <body>
-<div id="wrap">
+<!-- 한줄 메모장 글쓰기 import------------------------ -->
+	<c:import url="/memo"/>
+<!-- --------------------------------------------- -->
 	
+<div id="wrap">
+	<%-- ${memoArr} --%>
 
 	<table border="1">
 		<tr>
 			<th colspan="4">
 				<h2>:: 한줄 메모장 목록 ::</h2>
+				<span>총 게시글 수:${totalCount }</span>
 			</th>
 		</tr>
 		<tr>
@@ -23,18 +29,32 @@
 			<td width="20%"><b>작성자</b></td>
 			<td width="10%"><b>수정|삭제</b></td>
 		</tr>
-		
+		<c:if test="${memoArr eq null or empty memoArr}">
+			<tr>
+				<td colspan="4">
+					데이터가 없습니다
+				</td>
+				
+			</tr>
+		</c:if>
+		<c:if test="${memoArr ne null and  not empty memoArr}">
+			<c:forEach var="vo" items="${memoArr}">
 		<tr>
-			<td>a</td>
-			<td>a<span class="wdate">[a]</span></td>
-			<td>a</td>
+			<td>${vo.no}</td>
+			<td>${vo.msg}
+			<span class="wdate">[${vo.wdate}]</span></td>
+			<td>${vo.name}</td>
 			<td>
-				<a href="memoEdit?no=1">수정</a>|
-				<a href="memoDel?no=1">삭제</a>
+				<a href="memoEdit?no=${vo.no}">수정</a>|
+				<a href="memoDel?no=${vo.no}">삭제</a>
 			</td>
 		</tr>
-
+			</c:forEach>
+		</c:if>
 	</table>
+	<p style='text-align:center'>
+		[<a href="memo">글쓰기</a>]
+	</p>
 </div>
 
 </body>
