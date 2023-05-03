@@ -3,32 +3,49 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.memo.model.MemoMapper">
 	<select id="getTotalCount" resultType="_int">
-	<!--	_int : 기본자료형 int형 alias
-			int  : 클래스형 java.lang.Integer 
-	
-	 -->
+		<!-- _int : 기본자료형 int형 alias int : 클래스형 java.lang.Integer -->
 		select count(no) from memo
 	</select>
-	
-	<insert id="insertMemo" parameterType="com.memo.model.MemoVO">
+
+	<!-- <insert id="insertMemo" parameterType="com.memo.model.MemoVO"> insert 
+		into memo(no,name,msg,wdate) values(memo_seq.nextval, #{name},#{msg}, sysdate) 
+		</insert> -->
+	<insert id="insertMemo" parameterType="Memo">
+		<selectKey keyProperty="no" resultType="_int" order="BEFORE">
+			select
+			memo_seq.nextval from dual
+		</selectKey>
 		insert into memo(no,name,msg,wdate)
-		values(memo_seq.nextval, #{name},#{msg}, sysdate)
+		values(#{no}, #{name},#{msg},
+		sysdate)
 	</insert>
-	
-	<select id="listMemo" resultType="com.memo.model.MemoVO">
-		select * from memo order by no desc
+
+	<select id="listMemo" resultType="com.memo.model.MemoVO" parameterType="map">
+		<!-- select * from memo order by no desc -->
+		select * from (
+		select row_number() over(order by no desc) rn, memo.*
+		from memo order by no desc)
+		<![CDATA[
+		where rn > #{start} and rn <= #{end}
+		]]>
+		<!-- XML에서 부등호(<,>)는 태그를 표기하는 문자로 인식될 수 있다 
+			 SQL에서는 비교연산자(>,<)를 사용하므로, XML에서는 문제가 될 수 있다
+			 그런경우 CDATA 섹션으로 감싸주면, 부등호를 태그로 인식하는 것이 아니라 문자 데이터(CHARACTER DATA)로 인식한다 <![CDATA[ ]]>
+		-->
 	</select>
-	
+
 	<delete id="deleteMemo" parameterType="int">
-		delete from memo where no=#{value}
+		delete from memo where
+		no=#{value}
 	</delete>
-	
+
 	<select id="getMemo" resultType="Memo" parameterType="int">
 		<!-- alias지정 com.memo.model.MemoVO => Memo로 등록함 -->
 		select * from memo where no=#{value}
 	</select>
-	
+
 	<update id="updateMemo" parameterType="Memo">
-		update memo set name=#{name}, msg=#{msg} where no=#{no}
+		update memo set
+		name=#{name}, msg=#{msg} where no=#{no}
 	</update>
 </mapper>

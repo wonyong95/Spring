@@ -7,11 +7,13 @@
 	<!-- typeAlias 타입 별칭 설정 ================= -->
 	<typeAliases>
 		<typeAlias type="com.memo.model.MemoVO" alias="Memo"/>
+		<typeAlias type="com.user.model.UserVO" alias="User"/>
 	</typeAliases>
 	
 	<!-- mapper 정의 ============================== -->
 	 <mappers>
 	 	<mapper resource="config/mybatis/mapper/MemoMapper.xml"/>
 	 	<!-- SQL문을 모아놓은 파일 -->
+	 	<mapper resource="config/mybatis/mapper/UserMapper.xml"/>
 	 </mappers>
 </configuration>

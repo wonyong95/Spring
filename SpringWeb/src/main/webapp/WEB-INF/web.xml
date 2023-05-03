@@ -58,4 +58,16 @@
 		<filter-name>SpringEncodeFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- include -->
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/inc/top.jspf</include-prelude>
+			<!-- 모든 jsp페이지에서는 상단에 top.jspf를 include하라 -->
+			
+			<include-coda>/inc/foot.jspf</include-coda>
+			<!-- 모든 jsp페이지에서는 하단에 foot.jspf를 include하라 -->
+		</jsp-property-group>
+	</jsp-config>
 </web-app>
