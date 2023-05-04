@@ -19,4 +19,14 @@
 	<select id="idCheck" resultType="int" parameterType="String">
 		select idx from member where userid=#{value}
 	</select>
+	<!--
+		CREATE OR REPLACE VIEW memberView
+		AS
+		select member.*, 
+		decode(mstate,0,'일반회원',-1,'정지회원',-2,'탈퇴회원',9,'관리자') mstateStr from member
+		WHERE mstate>-2;
+	-->
+	<select id="findUser" resultType="User" parameterType="User">
+		select * from memberView where userid=#{userid}
+	</select>
 </mapper>

@@ -49,5 +49,5 @@
 	여기에 설정된 패키지안의 인터페이스들을 scan해서 해당 인터페이스를 상속받는 객체(proxy)를
 	스프링이 대신 만들어준다
 	-->
-	<mybatis-spring:scan base-package="com.user.mapper"/>
+	<mybatis-spring:scan base-package="com.user.mapper,com.shop.mapper"/>
 </beans>

@@ -3,7 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.0.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -26,10 +28,22 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- Password Security -->
+	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<!-- interceptor 설정======================================= -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/**"/>
+			<mapping path="/admin/**"/>
+			<beans:bean class="com.common.interceptor.LoginCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<!-- 스캔 대상 패키지를 등록====================================== -->
 	<context:component-scan base-package="com.my.myapp,com.memo.controller,com.memo.model" />
 	<context:component-scan base-package="com.user.service,com.user.mapper" />
-	
-	
+	<context:component-scan base-package="com.common,com.shop"/>
+	  
 	
 </beans:beans>

@@ -9,7 +9,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			<!-- /WEB-INF/spring/root-context.xml -->
-			classpath:config/spring/datasource-context.xml
+			classpath:config/spring/datasource-context.xml,			
 		</param-value>
 	</context-param>
 
@@ -37,7 +37,7 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<!-- POST방식일때 인코딩 처리 필러 -->
+	<!-- POST방식일 때 인코딩 처리 필터 -->
 	<filter>
 		<description></description>
 		<display-name>SpringEncodeFilter</display-name>
@@ -58,8 +58,8 @@
 		<filter-name>SpringEncodeFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<!-- include -->
+
+	<!-- include   -->
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
@@ -69,5 +69,6 @@
 			<include-coda>/inc/foot.jspf</include-coda>
 			<!-- 모든 jsp페이지에서는 하단에 foot.jspf를 include하라 -->
 		</jsp-property-group>
-	</jsp-config>
+	</jsp-config>	
+
 </web-app>

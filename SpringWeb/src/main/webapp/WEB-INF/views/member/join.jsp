@@ -24,7 +24,7 @@
             <td width="80%" class="m2">
                <div class="row">
                   <div class="col-6">
-                     <input type="text" name="userid" id="userid" class="form-control"
+                     <input type="text" name="userid" id="userid" readonly class="form-control"
                         placeholder="User ID">
                   </div>
                   <div class="col-4">
