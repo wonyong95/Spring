@@ -55,7 +55,7 @@
         <div class="col-md-12">
            <h1 class="text-center">상품 등록[Admin Page]</h1>
            
-           <form name="prodF" id="prodF" method="POST" 
+           <form name="prodF" id="prodF" method="POST"  enctype="multipart/form-data"
             action="prodInput" onsubmit="return check()">
             <!-- 파일업로드시: enctype="multipart/form-data"-->
             <table class="table table-condensed table-bordered mt-4">
@@ -113,9 +113,9 @@
                   <tr>
                      <td>상품이미지</td>
                      <td>
-                     <input type="file" name="pimage"><br> 
-                     <input type="file" name="pimage"><br> 
-                     <input type="file" name="pimage"><br>
+                     <input type="file" name="pimage" accept="images/*"><br> 
+                     <input type="file" name="pimage" accept="images/*"><br> 
+                     <input type="file" name="pimage" accept="images/*"><br>
                   </td>
                   </tr>
 
@@ -172,6 +172,3 @@
     </div>
   </div>
     
-
-
-<c:import url="/foot" />

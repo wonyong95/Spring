@@ -36,7 +36,7 @@
     		</tr>
     		<tr>
     			<td>회원상태</td>
-    			<td><b>${loginUsedr.mstateStr}</b></td>
+    			<td><b>${loginUser.mstateStr}</b></td>
     		</tr>
     		<tr>
     			<td colspan="2">

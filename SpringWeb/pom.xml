@@ -162,7 +162,7 @@
 			<artifactId>HikariCP</artifactId>
 			<version>2.7.4</version>
 		</dependency>
-	<!-- security -->
+		<!-- security -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -179,10 +179,26 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>5.0.7.RELEASE</version> 
-		</dependency> 
- 
- 
+			<version>5.0.7.RELEASE</version>
+		</dependency>
+
+		<!-- File Upload -->
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+
+
+
 		<!-- =============================================== -->
 	</dependencies>
 	<build>

@@ -1,0 +1,38 @@
+스프링의 파일업로드
+
+[1]라이브러리 등록
+ * ===pom.xml=========
+ * <!-- File Upload -->
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+ * ====================
+ * 
+[2]업로드할 디렉토리 정하기
+테스트: c:/myjava/Upload
+스프링 쇼핑몰: src/main/weapps/resources/product_images
+
+[3] servlet-context.xml에 MultipartResolver빈을 등록한다
+<!-- 파일업로드를 위한  MultipartResolver 설정 =============================== -->
+	<!--주의: 빈의 id는 반드시 multipartResolver로 등록해야 한다.다른 아이디를 주면 DispatcherServlet이 MultipartResolver로
+	인식하질 못한다.  -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="utf-8"/>
+		<beans:property name="maxUploadSize" value="-1"/>
+		<!-- -1을 주면 무제한 업로드 가능 -->
+	</beans:bean>
+	
+	<beans:bean id="upDir" class="java.lang.String">
+		<beans:constructor-arg index="0" value="C:/myjava/Upload"/>
+	</beans:bean>
+	<!-- String upDir=new String("C:/myjava/Upload"); -->
+	

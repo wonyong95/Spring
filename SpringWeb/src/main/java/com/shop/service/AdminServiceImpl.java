@@ -48,8 +48,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<ProductVO> productList() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.prodMapper.getProducts();
 	}
 
 }

@@ -1,0 +1,47 @@
+BCryptPasswordEncoder를 이용한 
+비밀번호 암호화/복호화
+[1] pom.xml에 관련 라이브러리 추가
+============================
+<!-- security -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>5.0.7.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>5.0.7.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.0.7.RELEASE</version>
+		</dependency>
+====================================
+[2] servlet-context.xml에 namespace 탭 선택해서 security를 체크하자
+
+[3] servlet-context.xml에 BCryptPasswordEncoder를 빈으로 등록하자
+<!-- Password Security -->
+	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+[4] 회원가입 컨트롤러, 로그인 컨트롤러에서 BCryptPasswordEncoder를 주입하자
+@Inject
+private BCryptPasswordEncoder passwordEncoder; 
+
+[5] 비밀번호 암호화 처리
+user.setPwd(passwordEncoder.encode(user.getPwd()));
+
+[6]암호화된 비밀번호 일치여부 체크
+passwordEncoder.matches(pwd, user.getPwd())
+
+
+		
+
+
+
+
+
