@@ -22,4 +22,8 @@
 	<select id="selectByPspec" resultType="Product" parameterType="string">
 		select * from product where pspec=#{value}
 	</select>
+	
+	<select id="selectByPnum" resultType="Product" parameterType="_int">
+		select * from product where pnum=#{value}
+	</select>
 </mapper>

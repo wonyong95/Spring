@@ -55,7 +55,8 @@ public class AdminController {
 					try {
 						SimpleDateFormat sdf=new SimpleDateFormat("yyyymmddhhmmss");
 						String str=sdf.format(new Date());
-						String fname=str+"_"+mf.getOriginalFilename();
+//						String fname=str+"_"+mf.getOriginalFilename();
+						String fname=mf.getOriginalFilename();
 						mf.transferTo(new File(upDir,fname));
 						if(i==0) {
 							item.setPimage1(fname);

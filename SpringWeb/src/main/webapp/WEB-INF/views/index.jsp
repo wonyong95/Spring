@@ -11,3 +11,8 @@
 <c:import url="/prodPspec">
 	<c:param name="pspec" value="NEW"/>
 </c:import>
+
+<!-- BEST상품 보여주기 -->
+<c:import url="/prodPspec">
+	<c:param name="pspec" value="BEST"/>
+</c:import>
