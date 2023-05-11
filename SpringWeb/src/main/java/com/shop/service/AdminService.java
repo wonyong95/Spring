@@ -8,7 +8,7 @@ import com.shop.model.ProductVO;
 public interface AdminService {
    public List<CategoryVO> getUpcategory();
 
-   public List<CategoryVO> getDowncategory(String upCg_code);
+   public List<CategoryVO> getDowncategory(int upCg_code);
 
    public int categoryAdd(CategoryVO cvo);
 

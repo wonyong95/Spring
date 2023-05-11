@@ -2,6 +2,15 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mapper.ProductMapper">
+
+	<select id="getUpcategory" resultType="Category">
+		select * from upCategory order by upCg_code
+	</select>
+	
+	<select id="getDowncategory" resultType="Category" parameterType="int">
+		select * from downCategory where UpCg_code=#{value} order by downCg_code asc
+	</select>
+	
 	<insert id="productInsert" parameterType="Product">
 		<selectKey keyProperty="pnum" resultType="_int"
 			order="BEFORE">

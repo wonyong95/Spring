@@ -39,8 +39,18 @@
    <select id="getCartTotal" resultType="Cart" parameterType="_int">
       select sum(totalPrice) cartTotalPrice, sum(totalPoint) cartTotalPoint from cartView where idx_fk=#{value}
    </select>
-   
+   <!-- 특정 상품을 장바구니에서 삭제 -->
    <delete id="delCart" parameterType="_int">
    		delete from cart where cartNum=#{value}
    </delete>
+   
+   <!-- 회원의 장바구니 목록 모두 비우기 -->
+   <delete id="delCartAll" parameterType="_int">
+   		delete from cart where idx_fk=#{value}
+   </delete>
+   
+   <!-- 장바구니 수량 수정 -->
+   <update id="editCart" parameterType="Cart">
+   		update cart set pqty=#{pqty} where cartNum=#{cartNum}
+   </update>
 </mapper>

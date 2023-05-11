@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shop.model.CategoryVO;
 import com.shop.model.ProductVO;
 import com.shop.service.AdminService;
 
@@ -34,6 +35,10 @@ public class AdminController {
 	
 	@GetMapping("/prodForm")
 	public String productForm(Model m) {
+		//상위 카테고리 목록 가져오기
+		
+		List<CategoryVO> upCgList=adminService.getUpcategory();
+		m.addAttribute("upCgList",upCgList);
 		
 		return "admin/prodInput";
 		//WEB-INF/views/admin/prodInput.jsp

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,6 +80,26 @@ public class CartController {
 			return "redirect:cartList";
 		}
 		int n=shopService.delCart(cartNum); 
+		
+		return "redirect:cartList";
+	}
+	
+	@PostMapping("/cartEdit")
+	public String cartEdit(@ModelAttribute CartVO cvo) {
+		log.info("cvo="+cvo);
+		shopService.editCart(cvo);
+		
+		return "redirect:cartList";
+	}
+	
+	@GetMapping("/delCartAll")
+	public String cartDeleteAll(HttpSession session) {
+		UserVO loginUser=(UserVO)session.getAttribute("loginUser");
+		int idx_fk=loginUser.getIdx();
+		CartVO cvo=new CartVO();
+		cvo.setIdx_fk(idx_fk);
+		
+		shopService.delCartAll(cvo);
 		
 		return "redirect:cartList";
 	}

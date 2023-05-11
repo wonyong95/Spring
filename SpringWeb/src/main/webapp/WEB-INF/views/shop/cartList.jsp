@@ -57,7 +57,7 @@
                         <td>
                         
                         <input type="number" name="pqty" id="pqty${state.index}" value="${item.pqty}" min="1" max="50">
-                        <button class="btn btn-success" onClick="">수정</button>
+                        <button type="button" class="btn btn-success" onClick="cartEdit('${item.cartNum}','${state.index}')">수정</button>
                         </td>
                         <td>
                         <fmt:formatNumber value="${item.saleprice}" pattern="###,###"/> 원<br>
@@ -88,6 +88,7 @@
                   <td colspan="3">
                      <button type="button" class="btn btn-outline-info" onclick="goOrder()">주문하기</button>            
                      <button type="button" class="btn btn-outline-danger" onclick="location.href='../index'">계속쇼핑</button>
+                     <button type="button" class="btn btn-outline-success" onclick="cartDelAll()">장바구니 비우기</button>
                   </td>
                </tr>
             </tbody>
@@ -97,21 +98,47 @@
       <!-- 주문form end---------------- -->
       
       <!-- 삭제 form 시작 ------------------ -->
-      <form name="df" action="cartDel">
+      <form name="df" action="cartDel">	
       	<input type="hidden" name="cartNum">
       </form>
       <!-- 삭제 form end------------------ -->
       
-      
+      <!-- 수정 form 시작------------------- -->
+      <form name="ef" action="cartEdit">
+      	<input type="hidden" name="cartNum">
+      	<input type="hidden" name="pqty">
+      </form>
+      <!-- ------------------------------------- -->
    </div>
 </div>
 
 
 <script>
+	function cartDelAll(){
+		let yn=confirm('장바구니를 모두 삭제할까요?');
+		if(yn){
+			location.href='delCartAll';
+		}
+	}
+
+	function cartEdit(cnum, i){
+		//alert(cnum+"/"+i)
+		let qty=$('#pqty'+i).val();
+		//alert(qty);//수정된 수량값
+		
+		ef.cartNum.value=cnum;
+		ef.pqty.value=qty;
+		ef.method='post';
+		ef.submit();
+	}//-------------------------
+	
 	function cartDel(cnum){
 		//alert(cnum)
+		let yn=confirm('정말 삭제할까요?')
+		if(yn){
 		df.cartNum.value=cnum;
 		df.method='post';
 		df.submit();
+		}
 	}
 </script>

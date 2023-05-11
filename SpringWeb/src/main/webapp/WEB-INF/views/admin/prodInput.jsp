@@ -73,8 +73,11 @@
                      <select name="upCg_code" id="upCg_code"
                         onchange="">
                            <option value="">::상위 카테고리::</option>
-                           
-                              <option value="1">컴퓨터.디지털.가전</option>
+                           		<c:forEach var="upCg" items="${upCgList}">
+                           			<option value="${upCg.upCg_code}">${upCg.upCg_name}</option>
+                           		</c:forEach>
+                           		
+                              <!-- <option value="1">컴퓨터.디지털.가전</option> -->
                               <!-- <option value="2">패션의류.잡화.뷰티</option> -->
                      </select> 
                      <span id="selectDcg"> 

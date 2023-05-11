@@ -26,8 +26,9 @@ public class CommonExceptionAdvice {
 	}
 	
 	@ExceptionHandler(NumberFormatException.class)
-	public String exceptionHandler2(Exception ex) {
+	public String exceptionHandler2(Exception ex,Model m) {
 		//log.error(ex);
+		m.addAttribute("exception",ex);
 		return "login/errorAlert";
 	}
 	
