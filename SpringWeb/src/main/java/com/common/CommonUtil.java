@@ -12,10 +12,12 @@ public class CommonUtil {
       return "message";
    }
    
-   public String addMasBack(Model m, String msg) {
+   public String addMsgBack(Model m, String msg) {
       m.addAttribute("msg",msg);
       m.addAttribute("loc","javascript:history.back()");
       return "message";
    }
+
+
 
 }
