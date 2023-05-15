@@ -15,7 +15,7 @@ public interface BoardMapper {
 	
 	   
 	int getTotalCount();//총 게시글 수 가져오기
-	int getTotalCount(PagingVO paging);//검색한 총 게시글 수 가져오기
+	int getTotalCountpaging(PagingVO paging);//총게시글 or 검색한 총 게시글 수 가져오기
 
 	// 글번호에 해당하는 글 가져오기
 	BoardVO selectBoardByIdx(int num);   
@@ -30,4 +30,5 @@ public interface BoardMapper {
 	int rewriteBoard(BoardVO board); //[답변형]
 	BoardVO selectRefLevSunbun(int num);//[답변형]
 	int updateSunbun(BoardVO parent);//[답변형]
+
 }

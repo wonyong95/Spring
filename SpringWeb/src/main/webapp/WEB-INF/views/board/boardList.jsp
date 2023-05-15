@@ -80,7 +80,7 @@
          <tfoot>
             <tr>
                <td colspan="3" class="text-center">
-               <ul class="pagination">
+               <ul class="pagination justify-content-center">
 					<c:forEach var="i" begin="1" end="${pageCount}">				
 						<li class="page-item <c:if test="${i eq cpage}">active</c:if>">
 						<a class="page-link" href="list?cpage=<c:out value="${i}"/>">

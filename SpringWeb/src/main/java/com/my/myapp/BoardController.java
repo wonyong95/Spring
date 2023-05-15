@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.board.model.BoardVO;
 import com.board.service.BoardService;
 import com.common.CommonUtil;
+import com.board.model.PagingVO;
 
 import lombok.extern.log4j.Log4j;
 
@@ -110,6 +112,7 @@ import lombok.extern.log4j.Log4j;
          String str="";
          if("write".equals(board.getMode())) {
            // 비밀번호 암호화 처리
+        	//for(int i=0;i<30;i++) //똑같은글 30개 저장됨
             n=boardService.insertBoard(board);
             str="글쓰기";
          }else if("edit".equals(board.getMode())) {
@@ -129,7 +132,35 @@ import lombok.extern.log4j.Log4j;
          return util.addMsgLoc(m, str, loc);
       }
     //------------------------------------------------------------------
+      
       @GetMapping("/list")
+      public String boardList(Model m,HttpServletRequest req, @ModelAttribute PagingVO page) {
+    	  HttpSession session=req.getSession();
+    	  //1. 총 게시글 수 가져오기 or 검색한 게시글 수 가져오기
+    	  int totalCount=this.boardService.getTotalCount();
+    	  page.setTotalCount(totalCount);
+    	//page.setPageSize(5);//한 페이지당 보여줄 목록 개수 : 5 ==>나중에 파라미터로 받을 예정
+    	  page.setPagingBlock(6);//페이징 블럭 단위 값: 5
+    	  ///////////////////////
+    	  page.init(session);//페이징 관련 연산을 수행하는 메서드
+    	  ////////////////////////
+    	  log.info("page: "+page);
+    	  //2. 게시글 목록 가져오기 or 검색할 게시글 목록 가져오기
+    	  List<BoardVO> boardArr=this.boardService.selectBoardAllPaging(page);
+    	  String myctx=req.getContextPath();
+    	  String loc="board/list";
+    	  
+    	  //3. 페이지 네비계이션 문자열 받아오기
+    	  String pageNavi=page.getPageNavi(myctx, loc);
+    	  
+    	  
+    	  m.addAttribute("paging",page);
+    	  m.addAttribute("boardArr",boardArr);
+    	  m.addAttribute("pageNavi",pageNavi);
+    	  return "board/boardList3";
+      }
+      
+      @GetMapping("/list_old")
       public String boardList(Model m, @RequestParam(defaultValue="1") int cpage) {
     	  log.info("cpage: "+cpage);
     	  if(cpage<0) {
